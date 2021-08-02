@@ -42,7 +42,7 @@ Inline.allowedChildren = [Inline, Parchment.Embed, Text];
 // Lower index means deeper in the DOM tree, since not found (-1) is for embeds
 Inline.order = [
   'cursor', 'inline',   // Must be lower
-  'underline', 'strike', 'italic', 'bold', 'script',
+  'underline', 'strike', 'italic', 'bold', 'script', 'ruby',
   'link', 'code'        // Must be higher
 ];
 

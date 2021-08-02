@@ -6,7 +6,7 @@ import icons from '../ui/icons';
 
 
 const TOOLBAR_CONFIG = [
-  ['bold', 'italic', 'link'],
+  ['bold', 'italic', 'link', 'ruby'],
   [{ header: 1 }, { header: 2 }, 'blockquote']
 ];
 

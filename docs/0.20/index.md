@@ -27,6 +27,8 @@ title: A Rich Text WYSIWYG Editor with an API - Quill v0.20
   <span title="Underline" class="ql-format-button ql-underline"></span>
   <span class="ql-format-separator"></span>
   <span title="Strikethrough" class="ql-format-button ql-strike"></span>
+  <span class="ql-format-separator"></span>
+  <span title="Ruby" class="ql-format-button ql-ruby"></span>
 </span>
 <span class="ql-format-group">
   <select title="Text Color" class="ql-color">
