@@ -39,6 +39,7 @@ module.exports = {
     'bullet'  : require('../assets/icons/list-bullet.svg'),
     'check'   : require('../assets/icons/list-check.svg')
   },
+  'ruby'      : require('../assets/icons/ruby.svg'),
   'script': {
     'sub'     : require('../assets/icons/subscript.svg'),
     'super'   : require('../assets/icons/superscript.svg'),
