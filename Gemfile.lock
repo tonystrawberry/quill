@@ -236,7 +236,7 @@ PLATFORMS
 
 DEPENDENCIES
   foreman
-  github-pages (= 172)
+  github-pages
 
 BUNDLED WITH
    1.16.1
