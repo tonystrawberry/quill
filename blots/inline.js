@@ -54,6 +54,7 @@ Inline.order = [
   'strike',
   'italic',
   'bold',
+  'ruby',
   'script',
   'code', // Must be higher
 ];

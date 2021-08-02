@@ -20,6 +20,7 @@ import { SizeClass, SizeStyle } from './formats/size';
 import Bold from './formats/bold';
 import Italic from './formats/italic';
 import Link from './formats/link';
+import Ruby from './formats/ruby';
 import Script from './formats/script';
 import Strike from './formats/strike';
 import Underline from './formats/underline';
@@ -84,6 +85,7 @@ Quill.register(
     'formats/code': InlineCode,
     'formats/italic': Italic,
     'formats/link': Link,
+    'formats/ruby': Ruby,
     'formats/script': Script,
     'formats/strike': Strike,
     'formats/underline': Underline,
