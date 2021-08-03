@@ -236,6 +236,23 @@ class BaseTooltip extends Tooltip {
   save() {
     let { value } = this.textbox;
     switch (this.root.getAttribute('data-mode')) {
+      case 'ruby': {
+        const { scrollTop } = this.quill.root;
+        if (this.rubyRange) {
+          this.quill.formatText(
+            this.rubyRange,
+            'ruby',
+            value,
+            Emitter.sources.USER,
+          );
+          delete this.rubyRange;
+        } else {
+          this.restoreFocus();
+          this.quill.format('ruby', value, Emitter.sources.USER);
+        }
+        this.quill.root.scrollTop = scrollTop;
+        break;
+      }
       case 'link': {
         const { scrollTop } = this.quill.root;
         if (this.linkRange) {

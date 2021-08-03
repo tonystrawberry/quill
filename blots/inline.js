@@ -56,6 +56,8 @@ Inline.order = [
   'bold',
   'script',
   'code', // Must be higher
+  'ruby',
+  'rt',
 ];
 
 export default Inline;

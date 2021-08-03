@@ -23,6 +23,8 @@ import Link from './formats/link';
 import Script from './formats/script';
 import Strike from './formats/strike';
 import Underline from './formats/underline';
+import Ruby from './formats/ruby';
+import Rt from './formats/rt';
 
 import Formula from './formats/formula';
 import Image from './formats/image';
@@ -87,6 +89,8 @@ Quill.register(
     'formats/script': Script,
     'formats/strike': Strike,
     'formats/underline': Underline,
+    'formats/ruby': Ruby,
+    'formats/rt': Rt,
 
     'formats/formula': Formula,
     'formats/image': Image,

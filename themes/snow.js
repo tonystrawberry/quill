@@ -2,6 +2,7 @@ import merge from 'lodash.merge';
 import Emitter from '../core/emitter';
 import BaseTheme, { BaseTooltip } from './base';
 import LinkBlot from '../formats/link';
+import RubyBlot from '../formats/ruby';
 import { Range } from '../core/selection';
 import icons from '../ui/icons';
 
@@ -16,6 +17,7 @@ class SnowTooltip extends BaseTooltip {
   constructor(quill, bounds) {
     super(quill, bounds);
     this.preview = this.root.querySelector('a.ql-preview');
+    this.rpreview = this.root.querySelector('a.ql-rpreview');
   }
 
   listen() {
@@ -24,7 +26,12 @@ class SnowTooltip extends BaseTooltip {
       if (this.root.classList.contains('ql-editing')) {
         this.save();
       } else {
-        this.edit('link', this.preview.textContent);
+        const mode = this.root.getAttribute('data-mode');
+        if (mode === 'link') {
+          this.edit('link', this.preview.textContent);
+        } else if (mode === 'ruby') {
+          this.edit('ruby', this.preview.textContent);
+        }
       }
       event.preventDefault();
     });
@@ -34,6 +41,12 @@ class SnowTooltip extends BaseTooltip {
         this.restoreFocus();
         this.quill.formatText(range, 'link', false, Emitter.sources.USER);
         delete this.linkRange;
+      }
+      if (this.rubyRange != null) {
+        const range = this.rubyRange;
+        this.restoreFocus();
+        this.quill.formatText(range, 'ruby', false, Emitter.sources.USER);
+        delete this.rubyRange;
       }
       event.preventDefault();
       this.hide();
@@ -47,30 +60,47 @@ class SnowTooltip extends BaseTooltip {
             LinkBlot,
             range.index,
           );
+
           if (link != null) {
             this.linkRange = new Range(range.index - offset, link.length());
             const preview = LinkBlot.formats(link.domNode);
             this.preview.textContent = preview;
             this.preview.setAttribute('href', preview);
-            this.show();
+            this.show('link');
             this.position(this.quill.getBounds(this.linkRange));
             return;
           }
-        } else {
           delete this.linkRange;
+
+          const [ruby, roffset] = this.quill.scroll.descendant(
+            RubyBlot,
+            range.index,
+          );
+
+          if (ruby != null) {
+            this.rubyRange = new Range(range.index - roffset, ruby.length());
+            const preview = RubyBlot.formats(ruby.domNode);
+            this.preview.textContent = preview;
+            this.show('ruby');
+            this.position(this.quill.getBounds(this.rubyRange));
+            return;
+          }
+          delete this.rubyRange;
         }
         this.hide();
       },
     );
   }
 
-  show() {
+  show(mode) {
     super.show();
     this.root.removeAttribute('data-mode');
+    this.root.setAttribute('data-mode', mode);
   }
 }
 SnowTooltip.TEMPLATE = [
   '<a class="ql-preview" rel="noopener noreferrer" target="_blank" href="about:blank"></a>',
+  '<ruby class="ql-rpreview"><rt></rt></ruby>',
   '<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL">',
   '<a class="ql-action"></a>',
   '<a class="ql-remove"></a>',
@@ -107,6 +137,18 @@ SnowTheme.DEFAULTS = merge({}, BaseTheme.DEFAULTS, {
   modules: {
     toolbar: {
       handlers: {
+        ruby(value) {
+          if (value) {
+            const range = this.quill.getSelection();
+            if (range == null || range.length === 0) return;
+
+            const preview = this.quill.getText(range);
+            const { tooltip } = this.quill.theme;
+            tooltip.edit('ruby', preview);
+          } else {
+            this.quill.format('ruby', false);
+          }
+        },
         link(value) {
           if (value) {
             const range = this.quill.getSelection();
