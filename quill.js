@@ -25,6 +25,7 @@ import Strike from './formats/strike';
 import Underline from './formats/underline';
 import Ruby from './formats/ruby';
 import Rt from './formats/rt';
+import Hr from './formats/hr';
 
 import Formula from './formats/formula';
 import Image from './formats/image';
@@ -91,6 +92,7 @@ Quill.register(
     'formats/underline': Underline,
     'formats/ruby': Ruby,
     'formats/rt': Rt,
+    'formats/hr': Hr,
 
     'formats/formula': Formula,
     'formats/image': Image,

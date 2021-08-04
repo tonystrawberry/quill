@@ -11,6 +11,7 @@ import colorIcon from '../assets/icons/color.svg';
 import directionLeftToRightIcon from '../assets/icons/direction-ltr.svg';
 import directionRightToLeftIcon from '../assets/icons/direction-rtl.svg';
 import formulaIcon from '../assets/icons/formula.svg';
+import hrIcon from '../assets/icons/hr.svg';
 import headerIcon from '../assets/icons/header.svg';
 import header2Icon from '../assets/icons/header-2.svg';
 import italicIcon from '../assets/icons/italic.svg';
@@ -21,6 +22,7 @@ import linkIcon from '../assets/icons/link.svg';
 import listBulletIcon from '../assets/icons/list-bullet.svg';
 import listCheckIcon from '../assets/icons/list-check.svg';
 import listOrderedIcon from '../assets/icons/list-ordered.svg';
+import rubyIcon from '../assets/icons/ruby.svg';
 import subscriptIcon from '../assets/icons/subscript.svg';
 import superscriptIcon from '../assets/icons/superscript.svg';
 import strikeIcon from '../assets/icons/strike.svg';
@@ -47,6 +49,7 @@ export default {
     rtl: directionRightToLeftIcon,
   },
   formula: formulaIcon,
+  hr: hrIcon,
   header: {
     '1': headerIcon,
     '2': header2Icon,
@@ -63,6 +66,7 @@ export default {
     check: listCheckIcon,
     ordered: listOrderedIcon,
   },
+  ruby: rubyIcon,
   script: {
     sub: subscriptIcon,
     super: superscriptIcon,

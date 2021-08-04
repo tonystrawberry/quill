@@ -16,10 +16,16 @@ class Ruby extends Inline {
   }
 
   format(name, value) {
-    console.log('format', name, value);
     if (name !== this.statics.blotName || !value) {
       super.format(name, value);
     } else {
+      const element = this.domNode.getElementsByTagName('rt');
+
+      // eslint-disable-next-line no-plusplus
+      for (let index = element.length - 1; index >= 0; index--) {
+        element[index].parentNode.removeChild(element[index]);
+      }
+
       this.domNode.innerHTML += `<rt>${value}</rt>`;
     }
   }
